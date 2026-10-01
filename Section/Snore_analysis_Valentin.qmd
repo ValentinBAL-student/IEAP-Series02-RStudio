@@ -1,0 +1,113 @@
+---
+title: "Snore analysis Valentin"
+author: "Valentin"
+format: typst
+editor: visual
+---
+
+```{r import data }
+library(tidyverse)
+
+snore <- read.table(
+  "data/snore.txt",
+  header = TRUE
+)
+
+glimpse(snore)
+summary(snore)
+```
+```{r making factor from each category variable}
+snore$snore <- factor(
+  snore$snore,
+  levels = c("N","O"),
+  labels = c("No","Yes")
+)
+
+snore$sex <- factor(
+  snore$sex,
+  levels = c("F","H"),
+  labels = c("Female","Male")
+)
+
+snore$tabac <- factor(
+  snore$tabac,
+  levels = c("N","O"),
+  labels = c("No","Yes")
+)
+
+```
+## Are snorers fatter?
+
+```{r Answering the question if there's correlation between snorer and the weight}
+#Checking if the series of data are follow the normality hypothesis
+
+#check the snorer
+shapiro.test(
+  snore$weight[snore$snore=="Yes"]
+)
+#check the non-snorer one
+shapiro.test(
+  snore$weight[snore$snore=="No"]
+)
+
+```
+
+Interpretation
+
+The Shapiro-Wilk test revealed that weight was not normally distributed in either group (snorers: p = 0.024; non-snorers: p = 0.020).
+
+Therefore, the assumption of normality was not satisfied then a non-parametric test was selected for the comparison.
+
+```{r visualisation of the statistics }
+ggplot(
+  snore,
+  aes(x = snore, y = weight, fill = snore)
+) +
+  geom_boxplot(alpha = 0.7, outlier.shape = NA) +
+  geom_jitter(
+    width = 0.15,
+    size = 2,
+    alpha = 0.7,
+    color = "black"
+  ) +
+  scale_fill_manual(
+    values = c(
+      "No" = "steelblue",
+      "Yes" = "tomato"
+    )
+  ) +
+  labs(
+    title = "Body weight of snorers and non-snorers",
+    x = "Snoring status",
+    y = "Weight (kg)"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "none"
+  )
+
+```
+
+\`
+
+```{r performing a non-parametric test : wilcox-test}
+wilcox.test(weight ~ snore, data = snore)
+```
+
+```{r show the mean and median of weight in snorer&non snorer}
+# compare the values between non-snorer & snorer in table
+snore %>%
+  group_by(snore) %>%
+  summarise(
+    mean_weight = mean(weight),
+    median_weight = median(weight),
+    sd_weight = sd(weight)
+  )
+```
+
+Discussion
+
+To determine whether snorers were heavier than non-snorers, the normality of weight distributions was assessed using the Shapiro-Wilk test. Since normality was rejected in both groups (p \< 0.05), a Mann-Whitney-Wilcoxon test was performed.
+
+The analysis revealed no significant difference in body weight between snorers and non-snorers (W = 1154, p = 0.908). The graph coincide with previous results.
+
