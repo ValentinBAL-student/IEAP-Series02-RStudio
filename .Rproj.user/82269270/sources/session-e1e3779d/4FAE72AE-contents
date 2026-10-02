@@ -1,0 +1,16 @@
+---
+title: "Series 02 - RStudio"
+author: "Valentin, Shunan & Gaia"
+format:
+  pdf:
+    toc: true
+    number-sections: true
+editor: visual
+---
+
+
+{{< include Section/01_shunan.qmd >}}
+
+{{< include Section/02_valentin.qmd >}}
+
+{{< include Section/03_gaia.qmd >}}
