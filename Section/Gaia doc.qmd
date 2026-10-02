@@ -143,3 +143,32 @@ chisq.test(table(snore$sex, snore$tabac))
 ```
 
 The chi-square test showed a significant association between sex and smoking status (χ² = 7.0023, df = 1, p = 0.00814). In our sample, 40% of women were smokers compared with 72% of men. Therefore, the proportion of smokers was significantly lower among women than among men.
+
+## From a more general perspective: Are there any correlations between variables? 
+
+We are interested in the quantitative variables:
+
+- age
+
+- weight
+
+- height
+
+- alcool
+
+Therefore, we use Spearman's correlation to evaluate the correlations between these variables.
+
+```{r Spearman's correlation'}
+num_data <- snore %>%
+  select(age, weight, height, alcool)
+#To detect correlation between numerical variables
+cor(
+  num_data,
+  method = "spearman",
+  use = "complete.obs"
+)
+```
+
+The correlation analysis revealed very few relationships between the quantitative variables.
+
+It showed one strong positive correlation between height and weight, with a Spearman correlation coefficient of 0.93. This means that taller individuals tended to be heavier and, heavier individuals tended to be taller.The other correlations were weak and close to zero.
