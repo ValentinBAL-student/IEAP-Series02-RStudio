@@ -83,3 +83,63 @@ The Mann-Whitney-Wilcoxon showed no significant difference in body weight betwee
 The mean body weight was 90.77kg for men and 89.32kg for women.
 
 Therefore, we found no statistically significant evidence that men were heavier than women in our sample.
+
+## Do women smoke less?
+
+First, we will create a table and a plot to have an idea of the data.
+
+```{r Table and Plot }
+
+#showing the % of smoking or not according to gender in a table
+# N: Non smoker, O: Smoker
+print("Table of smoker according to gender in percentage(%):")
+smoking_table <- prop.table(
+  table(snore$sex, snore$tabac),
+  margin = 1 #calculate the proportion by line
+) * 100 #to read it as percentage
+
+rownames(smoking_table) <- c("Female", "Male")
+colnames(smoking_table) <- c("No", "Yes")
+
+print(smoking_table)
+
+#graph 
+ggplot(
+  snore,
+  aes(
+    x = sex,
+    fill = tabac
+  )
+) +
+  geom_bar(position = "fill") +
+  scale_x_discrete(
+    labels = c(
+      "F" = "Female",
+      "H" = "Male"
+    )
+  ) +
+  scale_fill_discrete(
+    labels = c(
+      "N" = "No",
+      "O" = "Yes"
+    )
+  ) +
+  
+  scale_y_continuous(labels = scales::percent) +
+  theme_minimal() +
+  labs(
+    title = "Smoking status according to sex",
+    x = "Sex",
+    y = "Proportion",
+    fill = "Smoking"
+  )
+```
+
+Because these two variables are categorical variables we use Chi-square test of independence to test whether sex and tabac are independent.
+
+```{r Chi-square test}
+
+chisq.test(table(snore$sex, snore$tabac))
+```
+
+The chi-square test showed a significant association between sex and smoking status (χ² = 7.0023, df = 1, p = 0.00814). In our sample, 40% of women were smokers compared with 72% of men. Therefore, the proportion of smokers was significantly lower among women than among men.
