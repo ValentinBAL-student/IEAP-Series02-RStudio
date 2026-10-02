@@ -5,23 +5,17 @@ format: typst
 editor: visual
 ---
 
-## Quarto
+## 2.3.2 - The analysis part 2
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+```{r Import library and load data }
 
-## Running Code
+# Library
+library(tidyverse)
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+# Import data
+snore <- read.table("snore.txt", header = TRUE)
 
-```{r}
-1 + 1
+# Verify
+head(snore)
+str(snore)
 ```
-
-You can add options to executable code like this
-
-```{r}
-#| echo: false
-2 * 2
-```
-
-The `echo: false` option disables the printing of code (only output is displayed).
