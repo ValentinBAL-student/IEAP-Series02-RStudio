@@ -78,3 +78,98 @@ What is the difference between a paired and an unpaired test?
 A paired test is used when we test the same group multiple times. An unpaired test is used when testing the observations from two different groups.
 
 <https://openbooks.library.unt.edu/quantitative-analysis-exss/chapter/statistical-evaluation-of-differnece/?utm_source=chatgpt.com>
+
+# Part 2 : Effect of rehabilitation on performance
+
+2.2.1
+
+```{r}
+# load the data
+PrePost <- read.csv("data/PrePost.csv")
+head(PrePost)
+summary(PrePost)
+glimpse(PrePost)
+  
+```
+
+| Variable | Description | Unit | Possible values | Expected change |
+|---------------|---------------|---------------|---------------|---------------|
+| perf | Performance measured during the rehabilitation assessment | Arbitrary units | 125-148 | Increase after rehabilitation |
+| time | Measurement occasion | Category | Before, After | N/A |
+
+## Does the treatment have an effect ? To answer, we will compare before and after 
+
+```{r testing the diff and check if it's normal to chose a parametric/non parametric test}
+
+before <- PrePost$perf[PrePost$time == "Before"]
+after  <- PrePost$perf[PrePost$time == "After"]
+
+diff <- after - before # to check the normality of the difference between before and after, we will use the Shapiro-Wilk test
+
+shapiro.test(diff)
+
+```
+
+## **What comparison are you going to make?**
+
+- Which test will you use? Parametric or non-parametric?
+
+  Parametric test, the differences were taken before and after rehabilitation on the same participants, and they are approximately normally distributed, so a parametric paired t-test can be used.
+
+The Shapiro-Wilk test was not significant (p = 0.283). Therefore, the normality assumption was satisfied and then a paired parametric t-test is allowed and was used to compare performance before and after treatment.
+
+```{r performing the t-test on the before/after series}
+
+t.test(after, before, paired = TRUE)
+
+```
+
+Interpretation : A paired t-test showed that performance was significantly higher after rehabilitation than before rehabilitation (t(7) = 5.40 from 0, p = 0.001). Participants improved by an average of 2.5 units (95% Coincidence Inteval \[1.41, 3.59\]). These results indicate that the rehabilitation program had a significant positive effect on performance.
+
+- Which graph illustrates the effect of the treatment?
+
+  These 2 plots are used to illustrate the effect of the tratement, the boxplot illustrates the distribution of the data and the second one illustrates the paired individual changes between the groups.
+
+```{r Graph to illustrate effect over time}
+#plot the 1st graph to visualize the distribution and the variation of before and after series.
+ggplot(
+  PrePost,
+  aes(x = time, y = perf, fill = time)
+) +
+  geom_boxplot() +
+  theme_minimal() +
+  labs(
+    x = "Time",
+    y = "Performance",
+    title = "Effect of rehabilitation on performance"
+  )
+
+PrePost$subject <- rep(1:8, 2)
+#plot the 2nd graph to show the individual change due to rehabilitation.
+ggplot(
+  PrePost,
+  aes(x = time, y = perf, group = subject)
+) +
+  geom_line(alpha = 0.6) +
+  geom_point(size = 3) +
+  theme_minimal() +
+  labs(
+    x = "Time",
+    y = "Performance",
+    title = "Individual changes in performance"
+  )
+```
+
+- What sentence will you write in your thesis to explain your result?
+
+The normality of the differences between pre- and post-treatment performance was first assessed using a Shapiro-Wilk test. The test was not significant (p = 0.283), indicating that the normality assumption was satisfied.
+
+Consequently, a paired Student's t-test was performed to compare performance before and after rehabilitation. The analysis revealed a significant increase in performance after treatment (t(7) = 5.40, p = 0.001).
+
+The mean improvement was 2.5 units (95% CI \[1.41, 3.59\]), indicating that participants performed significantly better following the rehabilitation program. These results suggest that the rehabilitation intervention had a positive effect on performance.
+
+Limits
+
+A major limitation of this analysis is the small sample size (n = 8). The results should therefore be interpreted with caution, as a larger sample would provide more precise and reliable estimates of the treatment effect.
+
+Also,the study did not include a control group. Consequently, it is not possible to determine whether the observed improvement was exclusively due to the rehabilitation program or if others factors occured.
