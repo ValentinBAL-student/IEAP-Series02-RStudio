@@ -19,3 +19,67 @@ snore <- read.table("snore.txt", header = TRUE)
 head(snore)
 str(snore)
 ```
+
+## Are men fatter ? 
+
+To answer this question, we will first plot the data.
+
+```{r Plot data }
+#
+ggplot(
+  snore,
+  aes(x = sex, y = weight, fill = sex)#fill #: we use fill to diference the two groups
+) +
+  geom_boxplot(outlier.shape = NA, alpha = 0.7) +
+  geom_jitter(#some people same weight so shift a bit the points for more visability
+    width = 0.15,
+    alpha = 0.6
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "none"#because sex is already indicated on the x axis
+  ) +
+  labs(
+    title = "Body weight according to sex",
+    x = "Sex",
+    y = "Weight (kg)"
+  )
+```
+
+Now we wil test if the data are normally distributed or not.
+
+```{r Normality test }
+
+shapiro.test(
+  snore$weight[snore$sex == "H"]
+)
+
+shapiro.test(
+  snore$weight[snore$sex == "F"]
+)
+```
+
+The Shapiro-Wilk test showed that weight was not normally distributed in either group, with p=0.008 for men and p=0.039 for women.
+
+Therefore, we will used Mann-Whitney-Wilcoxon because we want to compare two independent groups and because the data are not normally distributed.
+
+```{r Mann-Whitney-Wilcoxon + descriptive statistics}
+
+wilcox.test(
+  weight ~ sex,#compare weight according to sex
+  data = snore
+)
+snore %>% # %>% means take this result and give it to the next step
+  group_by(sex) %>% #for each sex:
+  summarise(
+    mean_weight = mean(weight),
+    median_weight = median(weight),
+    sd_weight = sd(weight)
+  )
+```
+
+The Mann-Whitney-Wilcoxon showed no significant difference in body weight between men and women (W=893.5, p=0.729).
+
+The mean body weight was 90.77kg for men and 89.32kg for women.
+
+Therefore, we found no statistically significant evidence that men were heavier than women in our sample.
