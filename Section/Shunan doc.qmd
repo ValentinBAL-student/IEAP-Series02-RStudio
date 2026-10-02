@@ -9,19 +9,72 @@ editor: visual
 
 Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
 
-## Running Code
+### PART 2 : Stats
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+Part 1: Def
 
-```{r}
-1 + 1
-```
+What is a median? A mean?
 
-You can add options to executable code like this
+A median is obtain by adding values and dividing by the number of values. A median is the value in the middle of an ordered list of values.
 
-```{r}
-#| echo: false
-2 * 2
-```
+<https://maths-et-tiques.fr/telech/Tstat1.pdf>
 
-The `echo: false` option disables the printing of code (only output is displayed).
+What is a variance? A standard deviation?
+
+A variance indicates how spread out are the values from the mean value. It is calculated as the average of the squared differences between each value and the mean. The standard deviation is the square root of the variance, thus it is expressed in the same unit as the original values.
+
+<https://maths-et-tiques.fr/telech/Tstat1.pdf>
+
+What is a normal distribution?
+
+A normal distribution has a bell shaped, symmetrical curve, 95% of the data lie within two standard derivations of the mean.
+
+Najmi A, Sadasivam B, Ray A. How to choose and interpret a statistical test? An update for budding researchers. J Family Med Prim Care. 2021 Aug;10(8):2763-2767. doi: 10.4103/jfmpc.jfmpc_433_21. Epub 2021 Aug 27. PMID: 34660402; PMCID: PMC8483143.
+
+What is a statistical test?
+
+A statistical test is a method to determine whether there is enough evidence to state that there is a difference in what we want to test.
+
+<https://www.itl.nist.gov/div898/handbook/prc/section1/prc13.htm?utm_source=chatgpt.com>
+
+When to use a statistical test?
+
+A statistical test is used when we want to determine if the difference observed in the data is real or due to chance.
+
+<https://www.itl.nist.gov/div898/handbook/prc/section1/prc13.htm?utm_source=chatgpt.com>
+
+What is a parametric test? A non-parametric test?
+
+A parametric test is a type of test used when the data is normally distributed, whereas a non-parametric test is used when the data is not normally distributed.
+
+Najmi A, Sadasivam B, Ray A. How to choose and interpret a statistical test? An update for budding researchers. J Family Med Prim Care. 2021 Aug;10(8):2763-2767. doi: 10.4103/jfmpc.jfmpc_433_21. Epub 2021 Aug 27. PMID: 34660402; PMCID: PMC8483143.
+
+What are the assumptions of parametric tests?
+
+The assumptions of parametric tests are that the data are normally distributed and that the variances are equal between groups.
+
+<https://stats.libretexts.org/Bookshelves/Applied_Statistics/Mikes_Biostatistics_Book_%28Dohm%29/13%3A_Assumptions_of_Parametric_Tests?utm_source=chatgpt.com>
+
+What are the assumptions of non-parametric tests?
+
+The assumptions of non-parametric tests are that the sampling is random and they assume about the independence or dependence of samples.
+
+<https://stats.libretexts.org/Bookshelves/Applied_Statistics/Statistics_for_Research_Students_%28Fein_Gilmour_Machin_and_Liam_Hendry%29/09%3A_Nonparametric_Statistics/9.01%3A_Nonparametric_Definitions?utm_source=chatgpt.com>
+
+What is a p-value?
+
+A p-value is a measure which state if a difference is statistically significant. More details to understand better: We start with a null hypothesis that there is no difference between what we want to test. We perform a statistical tests, we obtain a p-value.The p-value is the probability of obtaining a difference at least as large as the one observed, assuming that the null hypothesis is true. Hence, if the p-value is small, the observed result would be unlikely if the null hypothesis was true, so we reject the null hypothesis. Therefore, we state that there is a statistically significant difference (usually when p\<0.05).
+
+<https://www.itl.nist.gov/div898/handbook/prc/section1/prc131.htm?utm_source=chatgpt.com>
+
+What is the risk of error when using a statistical test?
+
+The two types of errors are: - Type I error : when we reject the null hypothesis whereas the null hypothesis was true, - Type II error : when we fail to reject the null hypothesis whereas the null hypothesis was false.
+
+<https://online.stat.psu.edu/stat500/Lesson06?utm_source=chatgpt.com>
+
+What is the difference between a paired and an unpaired test?
+
+A paired test is used when we test the same group multiple times. An unpaired test is used when testing the observations from two different groups.
+
+<https://openbooks.library.unt.edu/quantitative-analysis-exss/chapter/statistical-evaluation-of-differnece/?utm_source=chatgpt.com>
