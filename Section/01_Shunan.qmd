@@ -1,6 +1,6 @@
 # Statisticals test
 
-## Part 1: Def
+## Part 1: Definitions
 
 What is a median? A mean?
 
