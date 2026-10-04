@@ -1,0 +1,8 @@
+"0","library(tidyverse)"
+"0",""
+"0","snore <- read.table("
+"0","  ""IEAP-Series02-RStudio/data/snore.txt"","
+"0","  header = TRUE"
+"0",")"
+"2","Erreur dans file(file, ""rt"") : impossible d'ouvrir la connexion
+"

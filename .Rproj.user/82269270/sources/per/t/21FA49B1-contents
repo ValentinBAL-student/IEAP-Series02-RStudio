@@ -1,0 +1,187 @@
+---
+title: "IEAP - RStudio03 - ANOVA"
+author: "Valentin BALBINE"
+format: html
+editor: visual
+date: today
+toc: true
+number-sections: true
+---
+
+# Introduction
+
+In this document, we will explore the fundamentals of Analysis of Variance (ANOVA) and apply it to analyze a scientific article. The analysis will focus on understanding the research question, experimental design, factors and levels, significance level, and the results presented in Figure 3 of the article. Finally, we will try to reproduce the results of Figure 3 using RStudio and verify the assumptions of ANOVA.
+
+#  Fundamentals of ANOVA
+
+## 1.1 ANOVA vs. Linear Regression
+
+ANOVA (Analysis of Variance) and linear regression are both statistical methods used to assess relationships between variables and are based on the same general linear model framework.
+
+**Similarities** - Both evaluate the effect of explanatory variables on a quantitative outcome. - Both rely on similar assumptions (independence, normality, and homogeneity of variance). - Both use hypothesis testing to assess statistical significance.
+
+**Differences** - ANOVA is mainly used to compare the means of different groups defined by categorical variables. - Linear regression is mainly used to model and predict a quantitative outcome from one or more predictors, often continuous. - ANOVA focuses on group differences, whereas regression focuses on estimating relationships and predicting values.
+
+In fact, ANOVA is generally used for comparing group means, while linear regression is used for modeling relationships between variables. Mathematically, ANOVA can be viewed as a special case of linear regression.
+
+## 1.2 Types of ANOVA
+
+ANOVA can be adapted to different experimental designs depending on how participants are assigned to conditions and how measurements are collected. The three main types of ANOVA are between-subjects, within-subjects, and mixed ANOVA.
+
+### Between-Subjects ANOVA or inter-group
+
+A Between-Subjects ANOVA compares the means of **two or more independent groups**. Each participant belongs to only one group.
+
+*Example:* Comparing test scores among students taught with three different teaching methods.
+
+### Within-Subjects ANOVA
+
+A Within-Subjects ANOVA (or repeated-measures ANOVA) compares means measured on the same participants under **different conditions or at different times**.
+
+*Example:* Comparing participants' stress levels before, during, and after an intervention.
+
+### Mixed ANOVA
+
+A Mixed ANOVA combines between-subjects and within-subjects factors in a single analysis.
+
+*Example:* Comparing changes in stress levels over time (within-subject factor) between a treatment group and a control group (between-subject factor).
+
+## 1.3 Key Statistical Concepts
+
+ANOVA evaluates how different factors influence a dependent variable. Its results are mainly interpreted through **main effects** and **interaction** **effects**.
+
+### Main Effect
+
+A main effect is the individual **effect** **of one factor on the dependent variable**, independently of the other factors.
+
+*Example:* A significant main effect of treatment means that the average outcome differs between treatment groups.
+
+### Interaction Effect
+
+An interaction effect occurs when the effect of **one factor** **depends** on the level **of another factor**.
+
+*Example:* An interaction between treatment and time means that the effect of treatment changes over time.
+
+## 1.4 Reference Book on ANOVA
+
+- [Title: *A Student’s Guide to Analysis of Variance*](https://www.routledge.com/A-Students-Guide-to-Analysis-of-Variance/Roberts-Russo/p/book/9780415165655)
+- Authors: Maxwell Roberts and Riccardo Russo
+- Publisher: Routledge
+- Year: 1999
+- ISBN: 978-0-415-16565-5
+- 288 pages
+- Summary: A clear introduction to ANOVA, particularly suitable for students in behavioral and social sciences. \## 2. Analysis of the Scientific Article
+
+### 2.1 Objective of the Paper
+
+The objective of the study was to determine whether the principles of trajectory formation during rapid reaching movements are preserved after a mild or moderate stroke. The performances of participants with stroke were compared with those of young and age-matched healthy adults.
+
+### 2.2 Experimental Design
+
+The study used a mixed ANOVA design:
+
+- **Between-subjects factor:** group
+  - Young adults\
+  - Age-matched adults\
+  - Participants with stroke
+- **Within-subjects factors:**
+  - Orientation: West, Northwest, North, Northeast, and East\
+  - Direction: Outward and inward\
+  - Index of difficulty: 3.80 and 5.43 bits
+
+### 2.3 Alpha Risk
+
+The significance level was set at **α = 0.01**. Therefore, an effect was considered statistically significant when its *p*-value was below 0.01.
+
+# Analysis of Figure 3
+
+## 3.1 Scientific Question Addressed
+
+Does task difficulty affect reaching performance differently after a stroke?
+
+## 3.2 Main Findings
+
+Participants with stroke showed a greater increase in movement time and number of sub-movements as difficulty increased, indicating lower sensorimotor information throughput.
+
+## 3.3 Location in the Article
+
+The findings are reported in the **Results** section, under *“Movement time and the Fitts’s law”* and *“Accuracy as a consequence of the number of feed-back loops.”*
+
+## 3.4 Experimental Design
+
+A mixed design compared three groups across two levels of task difficulty.
+
+## 3.5 Dependent Variables
+
+- **Movement time (MT):** time required to reach the target.
+- **Number of sub-movements (nSM):** number of corrective movements.
+
+## 3.6 Factors and Levels
+
+- **Group:** young adults, age-matched adults, and participants with stroke.
+- **Index of difficulty:** 3.80 and 5.43 bits. \## 3.7 Interpretation
+
+*Figure 3* suggests that participants with stroke follow the **same** general speed–accuracy relationship as healthy participants. **However**, increased difficulty has a **stronger effect** on their performance, leading to slower and more segmented movements. This result may reflect a greater reliance on corrective feedback mechanisms after stroke.
+
+#  Verification of ANOVA Assumptions
+
+## 4.1 Quantitative Dependent Variables
+
+This assumption is satisfied. Movement time (MT) and number of sub-movements (nSM) are quantitative variables.
+
+## 4.2 Categorical Independent Variables
+
+This assumption is satisfied. Group and index of difficulty are categorical factors with defined levels.
+
+## 4.3 Independence of Observations
+
+Participants were independent across groups. However, each participant completed several conditions, so observations within participants were not independent. This dependency was accounted for by using a mixed repeated-measures ANOVA.
+
+## 4.4 Normality of Residuals
+
+Movement time was not normally distributed. Nevertheless, the authors retained the ANOVA because the distributions had similar shapes and non-parametric analyses produced similar conclusions.
+
+## 4.5 Homogeneity of Variances
+
+The article does not report a specific test of variance homogeneity, such as Levene’s test. Therefore, this assumption cannot be formally confirmed.
+
+## 4.6 Additional Assumptions
+
+Sphericity is relevant because some within-subject factors have more than two levels. The authors applied the Greenhouse–Geisser correction to the orientation factor. Sphericity is automatically satisfied for factors with only two levels, such as direction and index of difficulty.
+
+Overall, most assumptions were addressed by the experimental design, although the homogeneity of variances was not explicitly tested.
+
+## 4.6 Summary
+
+## 4.7 Summary of ANOVA Assumptions
+
+| ANOVA assumption | Status | Justification |
+|------------------------|-------------------|-----------------------------|
+| Quantitative dependent variables | Satisfied | Movement time and number of sub-movements are quantitative variables. |
+| Categorical independent variables | Satisfied | Group, orientation, direction, and index of difficulty are categorical factors. |
+| Independence between participants | Satisfied | The three groups consisted of different participants. |
+| Independence within participants | Accounted for | Repeated observations were analysed using a mixed repeated-measures ANOVA. |
+| Normality | Partially satisfied | Movement time was not normally distributed. However, non-parametric tests produced similar conclusions. |
+| Homogeneity of variances | Not documented | The article does not report a specific test, such as Levene’s test. |
+| Sphericity | Accounted for | The Greenhouse–Geisser correction was applied to the orientation factor. |
+| Absence of extreme outliers | Not documented | The article does not clearly report an analysis of potential outliers. |
+
+Overall, the mixed ANOVA was appropriate for the experimental design. Most assumptions were satisfied or addressed statistically, although homogeneity of variances and the presence of outliers were not explicitly assessed.
+
+# Discussion
+
+The mixed ANOVA was appropriate because the study combined independent groups with repeated measurements. The strict significance threshold of α = 0.01 also reduced the risk of false-positive results.
+
+However, several limitations should be considered. Movement time was not normally distributed, although the authors reported that non-parametric analyses led to similar conclusions. In addition, the homogeneity of variances was not formally documented, and the relatively small and unequal group sizes may limit statistical power and the generalization of the findings.
+
+Finally, the experimental conditions were presented in a fixed order, which may have introduced learning or fatigue effects. Despite these limitations, the results remain convincing because the main effects were consistent across several movement variables and supported by complementary analyses.
+# Conclusion
+
+The study shows that the general principles of trajectory formation remain preserved after stroke. However, participants with stroke perform slower and more segmented movements, reflecting lower sensorimotor information throughput and greater reliance on corrective feedback.
+
+# References
+
+Roberts, M. J., & Russo, R. (1999). *[A student’s guide to analysis of variance](https://www.routledge.com/A-Students-Guide-to-Analysis-of-Variance/Roberts-Russo/p/book/9780415165655)*. Routledge.
+
+Montgomery, D. C. (2020). *[Design and analysis of experiments](https://www.wiley.com/en-us/shop/general-introductory-industrial-engineering/design-and-analysis-of-experiments-10th-edition-p-9781119722106)* (10th ed.). Wiley.
+

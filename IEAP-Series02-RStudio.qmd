@@ -1,0 +1,79 @@
+---
+title: "Series 02 - RStudio"
+author: "Valentin BALBINE, Shunan YIN& Gaia GASSIOLE"
+date: "03/10/2026"
+format:
+  pdf:
+    toc: true
+    number-sections: false
+editor: visual
+---
+
+Link to our GitHub repository : [GitHub Repository of BALBINE, GASSIOLE & YIN](https://github.com/ValentinBAL-student/IEAP-Series02-RStudio.git)
+
+mirror : <https://github.com/ValentinBAL-student/IEAP-Series02-RStudio.git>
+
+## **Analysis of the team workflow:**
+
+We work as a team on the instructions given by using Git and GitHub. We first settled our main branch by adding the data file, a R project, a master Quarto document and a folder with our 3 subdocuments. We did that so we could each work on our part in our attributed subdocuments on RStudio in our own branch. That way, we did not modify the main branch, and we avoided conflicts because we were not working on the same document.
+
+We tried to divide the work equally between the members. Each member worked in his document on his part, commited changes and pushed to origin so that the changes were visible on GitHub web. After that, each member created a pull request. When a member created a pull request, other members had to review it by making comments. Comments were made after reading and testing the member’s code. We ensure that the code worked and displayed what was expected and that the explanations were precise and detailed enough to understand it well. After comments were made, and mofications were made if needed, we approved the pull requests and merged our branch into main.
+
+The next step was to add our subdocuments to the master document. Afterwards, we created a new branch to complete the master document correctly by adding a logical presentation and add the present elements. We also edited the README file and LICENSE file. When everything was okay, we merged this branch into main.
+
+## **Analysis of the challenges encountered and lessons learned:**
+
+The first challenge that we encountered was to create the organization with the master document, the subdocuments and the branches in GitHub. We had a hard time understanding how it worked.
+
+Then, it was challenging to know and understand which statistical test needed to be conducted and how to explain well enough so our colleagues would understand our code.
+
+Moreover, a conflict happened in one of our branch so we needed to resolve the conflict.
+
+Finally, we needed to well organised our final document, to do so we needed to be really careful to not forget to include anything.
+
+### **Checklist for the grading criteria :**
+
+- a README.md file that contains a title, an introduction, the objectives of this repository, the contents of this repository and a summary of what we did.\
+- LICENSE file with our names on it.
+- IEAP-Series02-Rstudio.qmd file that contains:
+- the authors and the date (in the header)
+- a clickable link to your GitHub repository (which must be public)
+- an analysis of your team’s workflow strategy using Git
+- an analysis of the challenges encountered and lessons learned
+- the complete code and answers to the questions
+- data sources (with their URLs)
+- the scientific references you used (with their DOIs)
+- the checklist you used to ensure that you meet all the grading criteria
+- checking that the main branch is up to date.
+
+### **Code Section**
+
+**Data sources:**
+
+<https://moodle.umontpellier.fr/course/view.php?id=41022>
+
+in : "Data for series 02 RStudio"
+
+{{< include Section/01_shunan.qmd >}}
+
+{{< include Section/02_valentin.qmd >}}
+
+{{< include Section/03_gaia.qmd >}}
+
+**References:**
+
+Najmi A, Sadasivam B, Ray A. How to choose and interpret a statistical test? An update for budding researchers. J Family Med Prim Care. 2021 Aug;10(8):2763-2767. doi: 10.4103/jfmpc.jfmpc_433_21. Epub 2021 Aug 27. PMID: 34660402; PMCID: PMC8483143.
+
+https://maths-et-tiques.fr/telech/Tstat1.pdf
+
+https://www.itl.nist.gov/div898/handbook/prc/section1/prc13.htm?utm\_
+
+https://stats.libretexts.org/Bookshelves/Applied_Statistics/Mikes_Biostatistics_Book\_%28Dohm%29/13%3A_Assumptions_of_Parametric_Tests?utm\_
+
+https://stats.libretexts.org/Bookshelves/Applied_Statistics/Statistics_for_Research_Students\_%28Fein_Gilmour_Machin_and_Liam_Hendry%29/09%3A_Nonparametric_Statistics/9.01%3A_Nonparametric_Definitions?utm\_
+
+https://www.itl.nist.gov/div898/handbook/prc/section1/prc131.htm?utm\_
+
+https://online.stat.psu.edu/stat500/Lesson06?utm\_
+
+https://openbooks.library.unt.edu/quantitative-analysis-exss/chapter/statistical-evaluation-of-differnece/?utm\_
