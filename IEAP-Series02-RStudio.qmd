@@ -1,6 +1,6 @@
 ---
 title: "Series 02 - RStudio"
-author: "Valentin BALBINE, Shunan YIN& Gaia GASSAIOLE"
+author: "Valentin BALBINE, Shunan YIN& Gaia GASSIOLE"
 date: "03/10/2026"
 format:
   pdf:
