@@ -9,7 +9,7 @@ format:
 editor: visual
 ---
 
-Link to our GitHub repository : [GitHub Repository of BALBINE, GASSAIOLE & YIN](https://github.com/ValentinBAL-student/IEAP-Series02-RStudio.git)
+Link to our GitHub repository : [GitHub Repository of BALBINE, GASSIOLE & YIN](https://github.com/ValentinBAL-student/IEAP-Series02-RStudio.git)
 
 mirror : <https://github.com/ValentinBAL-student/IEAP-Series02-RStudio.git>
 
